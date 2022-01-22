@@ -8,8 +8,14 @@ public class BaseBlock : MonoBehaviour
     public enum DualityProerty
     {
         Empty,
-        Life,
-        Tempo,
+        Circle,
+        Square,
+        Water,
+        Sun,
+        Moon,
+        Clock,
+        Money,
+        Mountain,
     }
 
     [SerializeField]

@@ -9,10 +9,26 @@ public class GridManager : MonoBehaviour
 
     List<List<BaseBlock>> _grids;
 
+    private int _blockCount = 0;
+
+    public int blockCount
+    {
+        get { return _blockCount; }
+        set
+        {
+            _blockCount = value;
+            if(value == 0)
+            {
+                Debug.Log("下一关dd");
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
         _instance = this;
+        _blockCount = 0;
         InitGrids();
     }
     private void Start()
@@ -33,7 +49,12 @@ public class GridManager : MonoBehaviour
             var line = new List<BaseBlock>();
             foreach (Transform block in lines)
             {
-                line.Add(block.GetComponent<BaseBlock>());
+                var b = block.GetComponent<BaseBlock>();
+                if (b.propery!= BaseBlock.DualityProerty.Empty)
+                {
+                    blockCount++;
+                }
+                line.Add(b);
             }
             _grids.Add(line);
         }
@@ -92,6 +113,8 @@ public class GridManager : MonoBehaviour
                 {
                     var blackBlock = target.isBlack ? target : _lastSelect;
                     blackBlock.DispJoinBlock(true);
+
+                    blockCount -= 2;
                     _lastSelect.Clear();
                     target.Clear();
                 }
@@ -109,7 +132,10 @@ public class GridManager : MonoBehaviour
         else
         {
             _lastSelect = target;
-            target.DispJoinBlock(true);
+            if(!target.isBlack)
+            {
+                target.DispJoinBlock(true);
+            }
         }
     }
 
