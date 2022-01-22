@@ -10,6 +10,7 @@ public class LevelSelectView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelNames = GameManager.instance.levels;
         for (int i = levelNames.Count-1; i >= 0; i--)
         {
             var go = Instantiate(elementPrefab, root, true); 

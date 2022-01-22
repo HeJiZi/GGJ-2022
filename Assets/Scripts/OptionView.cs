@@ -9,9 +9,6 @@ public class OptionView : MonoBehaviour
     public Button btnBack;
     public Button btnNext;
     public Text textCurrentScene;
-    public string backScene;
-
-    public string nextScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +16,14 @@ public class OptionView : MonoBehaviour
         textCurrentScene.text = scene.name;
         btnBack.onClick.AddListener(() =>
         {
-            Debug.Log("back "+backScene);
-            SceneManager.LoadScene(backScene);
+            GameManager.instance.BackSelect();
         });
 
-        btnNext.gameObject.SetActive(!string.IsNullOrEmpty(nextScene)); 
+        btnNext.gameObject.SetActive(!string.IsNullOrEmpty(GameManager.instance.GetNextLevel())); 
         btnNext.onClick.AddListener(() =>
         {
-            Debug.Log("next "+nextScene);
-            SceneManager.LoadScene(nextScene);
+            Debug.Log("next ");
+            GameManager.instance.NextLevel();
         });
     }
 
