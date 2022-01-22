@@ -15,9 +15,15 @@ public class BaseBlock : MonoBehaviour
     [SerializeField]
     protected DualityProerty _property;
 
+    protected bool _isBlack = false;
+
+    public Vector2Int pos;
+
     private List<BlackBlock> _joinBlackBlocks = new List<BlackBlock>();
 
     public DualityProerty propery { get { return _property; } }
+
+    public bool isBlack { get { return _isBlack; } }
 
     public void AddJoinBlock(BlackBlock block)
     {
@@ -30,6 +36,18 @@ public class BaseBlock : MonoBehaviour
         {
             block.isDisplay = display;
         }
+    }
+
+    public void OnBlockClick()
+    {
+        GridManager.instance.TriggerRemove(GetComponent<BaseBlock>());
+
+    }
+
+    public void Clear()
+    {
+        _property = DualityProerty.Empty;
+        gameObject.SetActive(false);
     }
 
 }

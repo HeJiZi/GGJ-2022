@@ -23,6 +23,7 @@ public class BlackBlock : BaseBlock
 
     private void Awake()
     {
+        _isBlack = true;
         _propertyImg = transform.GetChild(0).gameObject;
         isDisplay = false;
     }
