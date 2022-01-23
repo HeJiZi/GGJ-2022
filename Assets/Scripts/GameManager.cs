@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager :MonoBehaviour
 {
@@ -18,6 +17,9 @@ public class GameManager :MonoBehaviour
     [SerializeField]
     private GameObject _endGameUI;
 
+    [SerializeField]
+    private Text _levelText;
+
 
     static GameManager()
     {
@@ -27,6 +29,7 @@ public class GameManager :MonoBehaviour
     }
     private void Awake()
     {
+        Screen.SetResolution(1280, 720, false);
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -48,7 +51,9 @@ public class GameManager :MonoBehaviour
     public void NextLevel()
     {
         _nextLevelUI.SetActive(false);
-        SceneManager.LoadScene(this.GetNextLevel());
+        string name = this.GetNextLevel();
+        SceneManager.LoadScene(name);
+        _levelText.text = name;
     }
 
     public void ReloadLevel()
@@ -67,11 +72,11 @@ public class GameManager :MonoBehaviour
     {
         Debug.Log("Start");
         levels = new List<string>();
-        levels.Add("Level1");
-        levels.Add("Level2");
-        levels.Add("Level3");
-        levels.Add("Level4");
-        levels.Add("Level5");
+        levels.Add("Level 1");
+        levels.Add("Level 2");
+        levels.Add("Level 3");
+        levels.Add("Level 4");
+        levels.Add("Level 5");
     }
     
     public void EndLevel()
