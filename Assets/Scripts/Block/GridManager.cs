@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
             _blockCount = value;
             if(value == 0)
             {
-                Debug.Log("下一关dd");
+                GameManager.instance.EndLevel();
             }
         }
     }
@@ -38,7 +38,10 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            GameManager.instance.ReloadLevel();
+        }
     }
 
     void InitGrids()
