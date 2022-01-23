@@ -120,6 +120,7 @@ public class GridManager : MonoBehaviour
                     blockCount -= 2;
                     _lastSelect.Clear();
                     target.Clear();
+                    GameManager.instance.PlayTriggerClip();
                 }
                 _lastSelect = null;
             }

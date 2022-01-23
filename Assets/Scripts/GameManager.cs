@@ -20,6 +20,9 @@ public class GameManager :MonoBehaviour
     [SerializeField]
     private Text _levelText;
 
+    [SerializeField]
+    private AudioSource _audio;
+
 
     static GameManager()
     {
@@ -99,6 +102,11 @@ public class GameManager :MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void PlayTriggerClip()
+    {
+        _audio.Play();
     }
     public void Init()
     {
